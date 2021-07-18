@@ -61,7 +61,7 @@ export default function Home() {
     [State.Shuffle]: {
       title: 'Shuffle with Playlists',
       href: '/subscribe',
-      buttonText: "Let's go",
+      buttonText: "LET'S GO",
       children: (
         <>
           <List>

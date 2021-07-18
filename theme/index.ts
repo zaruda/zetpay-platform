@@ -28,9 +28,12 @@ const theme = createTheme({
   },
   overrides: {
     MuiButton: {
-      label: {
+      root: {
+        textTransform: 'none',
+      },
+      containedPrimary: {
         color: '#ffffff'
-      }
+      },
     }
   }
 });

@@ -108,7 +108,7 @@ export default function Subscribe() {
       <div className={classes.footer}>
         <Drawer>
           <Button color="primary" variant="contained" endIcon={<ArrowRightIcon />} fullWidth>
-            Continue
+            CONTINUE
           </Button>
         </Drawer>
         <Typography className={classes.trial} variant="body2" align="center">

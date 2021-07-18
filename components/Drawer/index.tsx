@@ -70,7 +70,7 @@ const Drawer: FC<IDrawerProps> = ({ children }) => {
             <Typography color="textSecondary" className={classes.subtitle}>
               Add a payment method to your account to start your free trial. You won’t be charged if yo cancel it beforу Jul 17, {new Date().getFullYear()}.
             </Typography>
-            <Button startIcon={<CardIcon />} fullWidth variant="outlined">
+            <Button startIcon={<CardIcon />} fullWidth variant="outlined" href="/subscribe/form">
               Add credit or debit card
             </Button>
           </div>

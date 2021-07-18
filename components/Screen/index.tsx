@@ -11,7 +11,7 @@ const Screen: FC<IScreenProps> = ({
   title,
   subtitle,
   onContinue = () => { },
-  buttonText = 'Continue',
+  buttonText = 'CONTINUE',
   href,
   showPrivacyPolicy = false,
   children,
