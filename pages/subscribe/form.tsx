@@ -1,10 +1,26 @@
 import { Formik, Form, Field } from "formik";
+import { useMutation } from "react-query";
+import axios from "axios";
 import { object, string } from 'yup';
-import { Container, Button, Grid, Typography } from "@material-ui/core";
+import { Container, Button, Grid, Typography, makeStyles, Theme } from "@material-ui/core";
 
 import TextField from '../../components/form/TextField';
 
-
+const useStyles = makeStyles<Theme>((theme) => ({
+  root: {
+    padding: theme.spacing(4, 2),
+    height: '95vh',
+  },
+  form: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr',
+    height: `calc(100% - ${theme.spacing(6)}px)`,
+    marginTop: theme.spacing(6)
+  },
+  footer: {
+    marginTop: 'auto'
+  }
+}))
 interface SubscribeForm {
   cardNumber: string;
   date: string;
@@ -20,11 +36,11 @@ const nameField = 'name';
 const emailField = 'email';
 
 const initialValues: SubscribeForm = {
-  [cardNumberField]: '',
-  [dateField]: '',
-  [cvcField]: '',
-  [nameField]: '',
-  [emailField]: ''
+  [cardNumberField]: '4111111111111111',
+  [dateField]: '12/22',
+  [cvcField]: '123',
+  [nameField]: 'TEST TEST',
+  [emailField]: 'test@gmail.com'
 }
 
 const schema = object({
@@ -36,14 +52,25 @@ const schema = object({
 })
 
 export default function SubscribeForm() {
+  const classes = useStyles()
+  const { mutateAsync: createInvoice } = useMutation(() => axios.post('/api/invoice/create'))
+
+  const handleSubmit = async (values: SubscribeForm) => {
+    const { data: sessionId } = await createInvoice()
+  }
+
   return (
-    <Container>
-      <Typography variant="h1">
+    <Container className={classes.root}>
+      <Typography variant="h3" align="center">
         Add credit or debit card
       </Typography>
 
-      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={console.log}>
-        <Form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleSubmit}
+      >
+        <Form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Field
@@ -96,7 +123,7 @@ export default function SubscribeForm() {
             </Grid>
           </Grid>
 
-          <div>
+          <div className={classes.footer}>
             <Typography variant="body2" gutterBottom color="textSecondary" align="center">
               By continuing, you agree to the Google Payments Terms of Service. The Privacy Notice describes how your data is handled.
             </Typography>

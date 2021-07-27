@@ -5,7 +5,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     display: 'grid',
     height: '100vh',
     gridTemplateRows: 'auto auto 1fr',
-    padding: theme.spacing(4, 0),
+    padding: theme.spacing(3, 0),
     maxWidth: 600,
     margin: 'auto',
   },
@@ -19,7 +19,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     fontWeight: theme.typography.fontWeightBold,
   },
   subtitle: {
-    margin: theme.spacing(0, 4, 4)
+    margin: theme.spacing(0, 3, 3),
   },
   terms: {
     marginTop: theme.spacing(0.5)

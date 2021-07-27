@@ -1,8 +1,6 @@
-import { ReactNode, useState } from 'react'
+import { useState } from 'react'
 import { Container, List, ListItem, ListItemAvatar, ListItemText, makeStyles } from '@material-ui/core'
-import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 
 import Screen from '../components/Screen'
 import { IScreenProps } from '../components/Screen/types'
@@ -46,8 +44,8 @@ export default function Home() {
 
   const SLIDES_DATA: Record<State, IScreenProps> = {
     [State.Welcome]: {
-      title: "Welcom to Wallpaper 4K",
-      subtitle: "Get exclisive free images from amazing artists around the world. Artists get discoverd and paid for theur work.",
+      title: "Welcome to Wallpaper 4K",
+      subtitle: "Get exclusive free images from amazing artists around the world. Artists get discovered and paid for their work.",
       onContinue: () => setCurrentState(State.Discover),
       children: <Image src={HeroImage} layout="responsive" alt="Welcome to Wallpaper 4K" quality={100} />,
       showPrivacyPolicy: true,

@@ -24,6 +24,10 @@ const theme = createTheme({
     h1: {
       fontSize: 30,
       lineHeight: '38px'
+    },
+    h3: {
+      fontSize: 18,
+      lineHeight: '24px'
     }
   },
   overrides: {

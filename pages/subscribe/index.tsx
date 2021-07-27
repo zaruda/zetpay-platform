@@ -13,7 +13,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     display: 'grid',
     gridTemplateRows: 'auto auto 1fr auto',
     height: '100vh',
-    padding: theme.spacing(5, 2),
+    padding: theme.spacing(4, 2),
     color: 'white',
     backgroundColor: 'black',
   },
