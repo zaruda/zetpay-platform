@@ -1,12 +1,18 @@
-import { Container, Typography, Button, makeStyles, Theme } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  Button,
+  makeStyles,
+  Theme
+} from '@material-ui/core';
 
-import FourkIcon from "../../components/icons/FourkIcon";
-import PlaylistWhiteIcon from "../../components/icons/PlaylistWhiteIcon";
-import UnlimitedIcon from "../../components/icons/UnlimitedIcon";
-import AdIcon from "../../components/icons/AdIcon";
-import ArrowRightIcon from "../../components/icons/ArrowRightIcon";
-import MonsterIcon from "../../components/icons/MonsterIcon";
-import Drawer from "../../components/Drawer";
+import FourkIcon from '../../components/icons/FourkIcon';
+import PlaylistWhiteIcon from '../../components/icons/PlaylistWhiteIcon';
+import UnlimitedIcon from '../../components/icons/UnlimitedIcon';
+import AdIcon from '../../components/icons/AdIcon';
+import ArrowRightIcon from '../../components/icons/ArrowRightIcon';
+import MonsterIcon from '../../components/icons/MonsterIcon';
+import Drawer from '../../components/Drawer';
 
 const useStyles = makeStyles<Theme>(theme => ({
   root: {
@@ -15,30 +21,30 @@ const useStyles = makeStyles<Theme>(theme => ({
     height: '100vh',
     padding: theme.spacing(4, 2),
     color: 'white',
-    backgroundColor: 'black',
+    backgroundColor: 'black'
   },
   title: {
     fontSize: theme.typography.fontSize * 4,
     fontWeight: theme.typography.fontWeightBold,
-    lineHeight: 'initial',
+    lineHeight: 'initial'
   },
   subtitle: {
-    fontWeight: theme.typography.fontWeightBold,
+    fontWeight: theme.typography.fontWeightBold
   },
   content: {
     maxWidth: 600,
-    margin: 'auto',
+    margin: 'auto'
   },
   footer: {
     maxWidth: 600,
-    margin: 'auto',
+    margin: 'auto'
   },
   monster: {
     display: 'block',
     maxWidth: theme.spacing(33.5),
     width: '100%',
     height: '100%',
-    margin: theme.spacing(0, 'auto', -3),
+    margin: theme.spacing(0, 'auto', -3)
   },
   featureList: {
     display: 'grid',
@@ -57,10 +63,10 @@ const useStyles = makeStyles<Theme>(theme => ({
   trial: {
     marginTop: theme.spacing(0.5)
   }
-}))
+}));
 
 export default function Subscribe() {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Container className={classes.root}>
@@ -74,7 +80,6 @@ export default function Subscribe() {
         </Typography>
       </div>
       <div className={classes.content}>
-
         <div className={classes.featureList}>
           <div className={classes.feature}>
             <UnlimitedIcon />
@@ -107,7 +112,12 @@ export default function Subscribe() {
       </div>
       <div className={classes.footer}>
         <Drawer>
-          <Button color="primary" variant="contained" endIcon={<ArrowRightIcon />} fullWidth>
+          <Button
+            color="primary"
+            variant="contained"
+            endIcon={<ArrowRightIcon />}
+            fullWidth
+          >
             CONTINUE
           </Button>
         </Drawer>
@@ -116,5 +126,5 @@ export default function Subscribe() {
         </Typography>
       </div>
     </Container>
-  )
+  );
 }

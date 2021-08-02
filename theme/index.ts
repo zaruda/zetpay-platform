@@ -5,16 +5,16 @@ import { red } from '@material-ui/core/colors';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#30CCCD',
+      main: '#30CCCD'
     },
     secondary: {
-      main: '#0C6E46',
+      main: '#0C6E46'
     },
     error: {
-      main: red.A400,
+      main: red.A400
     },
     background: {
-      default: '#fff',
+      default: '#fff'
     },
     text: {
       secondary: '#B2BFC8'
@@ -33,11 +33,11 @@ const theme = createTheme({
   overrides: {
     MuiButton: {
       root: {
-        textTransform: 'none',
+        textTransform: 'none'
       },
       containedPrimary: {
         color: '#ffffff'
-      },
+      }
     }
   }
 });

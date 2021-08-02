@@ -4,7 +4,7 @@ export interface ICreateInvoiceRequest {
   payway: string;
   shop_id: number;
   shop_order_id: string;
-  sign?: string
+  sign?: string;
 }
 
 export interface ICreateInvoiceResponse {
@@ -18,5 +18,5 @@ export interface ICreateInvoiceResponse {
   };
   error_code: number;
   message: string;
-  result: boolean
+  result: boolean;
 }
