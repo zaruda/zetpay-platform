@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
-import { useMutation } from 'react-query';
-import axios from 'axios';
+import { useMutation, useQuery } from 'react-query';
+import axios, { AxiosError } from 'axios';
 import { object, string } from 'yup';
 import {
   Container,
@@ -10,6 +10,8 @@ import {
   makeStyles,
   Theme
 } from '@material-ui/core';
+
+import { CreateInvoiceResponse } from '../api/invoice/create';
 
 import TextField from '../../components/form/TextField';
 
@@ -60,13 +62,28 @@ const schema = object({
 
 export default function SubscribeForm() {
   const classes = useStyles();
-  const { mutateAsync: createInvoice } = useMutation(() =>
-    axios.post('/api/invoice/create')
+
+  const { data } = useQuery<unknown, AxiosError, CreateInvoiceResponse>(
+    'createInvoice',
+    () => axios.post('/api/invoice/create'),
+    {
+      enabled: false
+    }
   );
+  // const { mutateAsync: createInvoice } = useMutation(() =>
+  //   axios.post('/api/invoice/create'), {
+  //     onSuccess: ({sessionId, formToken, payformUrl}) =>
+  //   }
+  // );
 
   const handleSubmit = async (values: SubscribeForm) => {
-    const { data: sessionId } = await createInvoice();
+    // const { sessionId, formToken, payformUrl } = await createInvoice();
   };
+
+  const payformUrl =
+    data && data?.payformUrl.includes('http')
+      ? data?.payformUrl
+      : `https://${data?.payformUrl}`;
 
   return (
     <Container className={classes.root}>
@@ -79,7 +96,9 @@ export default function SubscribeForm() {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form className={classes.form}>
+        <form className={classes.form} action={payformUrl} method="POST">
+          <input type="hidden" name="session_id" value={data?.sessionId} />
+          <input type="hidden" name="form_token" value={data?.formToken} />
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Field
@@ -148,7 +167,7 @@ export default function SubscribeForm() {
               Submit
             </Button>
           </div>
-        </Form>
+        </form>
       </Formik>
     </Container>
   );

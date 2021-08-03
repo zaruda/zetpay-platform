@@ -1,11 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import services from '../../../services';
-import { ICreateInvoiceResponse } from '../../../services/Zetpay/types';
+
+export interface CreateInvoiceResponse {
+  sessionId: string;
+  formToken: string;
+  payformUrl: string;
+}
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ICreateInvoiceResponse>
+  res: NextApiResponse<CreateInvoiceResponse>
 ) {
   const result = await services.zetpay.createInvoice({
     amount: 1,
@@ -17,9 +22,14 @@ export default async function handler(
 
   const sessionId = result.data.data.data.session_id;
 
-  // const data = await services.host2host.getFormToken(sessionId)
+  const tokenResponse = await services.host2host.getFormToken(sessionId);
 
-  // console.log(data)
+  const formToken = tokenResponse.data.data.form_token;
+  const payformUrl = tokenResponse.data.data.payform_url;
 
-  res.status(200).json(result.data);
+  res.status(200).json({
+    sessionId,
+    formToken,
+    payformUrl
+  });
 }
