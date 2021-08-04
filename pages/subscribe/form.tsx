@@ -67,7 +67,7 @@ export default function SubscribeForm() {
     'createInvoice',
     () => axios.post('/api/invoice/create'),
     {
-      enabled: false
+      onError: console.log
     }
   );
   // const { mutateAsync: createInvoice } = useMutation(() =>
