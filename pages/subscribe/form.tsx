@@ -76,14 +76,7 @@ export default function SubscribeForm() {
   //   }
   // );
 
-  const handleSubmit = async (values: SubscribeForm) => {
-    // const { sessionId, formToken, payformUrl } = await createInvoice();
-  };
-
-  const payformUrl =
-    data && data?.payformUrl.includes('http')
-      ? data?.payformUrl
-      : `https://${data?.payformUrl}`;
+  const handleSubmit = async (values: SubscribeForm) => {};
 
   return (
     <Container className={classes.root}>
@@ -96,7 +89,7 @@ export default function SubscribeForm() {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <form className={classes.form} action={payformUrl} method="POST">
+        <form className={classes.form} action={data?.payformUrl} method="POST">
           <input type="hidden" name="session_id" value={data?.sessionId} />
           <input type="hidden" name="form_token" value={data?.formToken} />
           <Grid container spacing={2}>
