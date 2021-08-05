@@ -1,22 +1,23 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+import Link from 'next/link';
 
-import { Button, Grid, Typography } from '@material-ui/core'
+import { Button, Grid, Typography, Link as MuiLink } from '@material-ui/core';
 
-import ArrowRightIcon from '../icons/ArrowRightIcon'
+import ArrowRightIcon from '../icons/ArrowRightIcon';
 
-import useStyles from './styles'
-import { IScreenProps } from './types'
+import useStyles from './styles';
+import { IScreenProps } from './types';
 
 const Screen: FC<IScreenProps> = ({
   title,
   subtitle,
-  onContinue = () => { },
+  onContinue = () => {},
   buttonText = 'CONTINUE',
   href,
   showPrivacyPolicy = false,
-  children,
+  children
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Grid container className={classes.container}>
@@ -27,7 +28,7 @@ const Screen: FC<IScreenProps> = ({
       </Grid>
       {subtitle && (
         <Grid item xs={12} className={classes.subtitle}>
-          <Typography color="textSecondary" variant="subtitle1" align="center">
+          <Typography color="textSecondary" variant="body2" align="center">
             {subtitle}
           </Typography>
         </Grid>
@@ -47,13 +48,35 @@ const Screen: FC<IScreenProps> = ({
           {buttonText}
         </Button>
         {showPrivacyPolicy && (
-          <Typography className={classes.terms} variant="body2" align="center" color="textSecondary">
-            By continuing you agree to our Privacy Policy and Terms of Service
+          <Typography
+            className={classes.terms}
+            variant="body2"
+            align="center"
+            color="textSecondary"
+          >
+            By continuing you agree to our{' '}
+            <Link
+              href="https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=privacynotice&ldl=ru"
+              passHref
+            >
+              <MuiLink target="_blank" underline="always">
+                Privacy Notice
+              </MuiLink>
+            </Link>{' '}
+            and{' '}
+            <Link
+              href="https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=buyertos"
+              passHref
+            >
+              <MuiLink target="_blank" underline="always">
+                Terms of Service
+              </MuiLink>
+            </Link>
           </Typography>
         )}
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default Screen
+export default Screen;

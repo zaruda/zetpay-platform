@@ -1,29 +1,34 @@
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles<Theme>(theme => ({
   container: {
-    display: 'grid',
     height: '100vh',
+    display: 'grid',
     gridTemplateRows: 'auto auto 1fr',
-    padding: theme.spacing(3, 0),
+    gridGap: theme.spacing(2),
+    padding: theme.spacing(2, 0, 5),
     maxWidth: 600,
-    margin: 'auto',
+    margin: 'auto'
   },
   footer: {
     margin: theme.spacing('auto', 4, 0)
   },
   title: {
-    margin: theme.spacing(0, 3, 3)
+    margin: theme.spacing(0, 3)
   },
   titleText: {
-    fontWeight: theme.typography.fontWeightBold,
+    fontWeight: theme.typography.fontWeightBold
   },
   subtitle: {
-    margin: theme.spacing(0, 3, 3),
+    margin: theme.spacing(0, 3)
   },
   terms: {
-    marginTop: theme.spacing(0.5)
+    fontSize: 10,
+    marginTop: theme.spacing(1),
+    '& > a': {
+      color: theme.palette.common.black
+    }
   }
-}))
+}));
 
-export default useStyles
+export default useStyles;

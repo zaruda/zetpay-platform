@@ -15,9 +15,9 @@ import PlaylistIcon from '../components/icons/PlaylistIcon';
 import PlayIcon from '../components/icons/PlayIcon';
 import ShuffleIcon from '../components/icons/ShuffleIcon';
 
-import HeroImage from '../public/images/bg1.png';
-import ShuffleImage from '../public/images/bg2.png';
-import PersonCardImage from '../public/images/PersonCard.png';
+import HeroImage from '../public/images/bg1@2x.png';
+import ShuffleImage from '../public/images/bg2@2x.png';
+import PersonCardImage from '../public/images/PersonCard.svg';
 
 enum State {
   Welcome,
@@ -38,7 +38,7 @@ const createListItem = ({
     </ListItemAvatar>
     <ListItemText
       primary={text}
-      primaryTypographyProps={{ color: 'textSecondary' }}
+      primaryTypographyProps={{ color: 'textSecondary', variant: 'body2' }}
     />
   </ListItem>
 );

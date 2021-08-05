@@ -1,4 +1,5 @@
 import { useState, FC } from 'react';
+import { addDays, format } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
@@ -9,9 +10,9 @@ import GooglePlayIcon from '../icons/GooglePlayIcon';
 import CardIcon from '../icons/CardIcon';
 import { IDrawerProps } from './types';
 
-const useStyles = makeStyles<Theme>((theme) => ({
+const useStyles = makeStyles<Theme>(theme => ({
   header: {
-    padding: theme.spacing(1, 0, 1, 4),
+    padding: theme.spacing(1, 0, 1, 4)
   },
   googleIcon: {
     display: 'block',
@@ -29,25 +30,23 @@ const useStyles = makeStyles<Theme>((theme) => ({
   }
 }));
 
-
 const Drawer: FC<IDrawerProps> = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event &&
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
 
-    setOpen(open);
-  };
+      setOpen(open);
+    };
 
   return (
     <>
@@ -67,10 +66,21 @@ const Drawer: FC<IDrawerProps> = ({ children }) => {
             <Typography variant="h6" className={classes.title}>
               Add payment method to your Google account
             </Typography>
-            <Typography color="textSecondary" className={classes.subtitle}>
-              Add a payment method to your account to start your free trial. You won’t be charged if yo cancel it beforу Jul 17, {new Date().getFullYear()}.
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              className={classes.subtitle}
+            >
+              Add a payment method to your account to start your free trial. You
+              won’t be charged if you cancel it before{' '}
+              {format(addDays(new Date(), 3), 'PPP')}.
             </Typography>
-            <Button startIcon={<CardIcon />} fullWidth variant="outlined" href="/subscribe/form">
+            <Button
+              startIcon={<CardIcon />}
+              fullWidth
+              variant="outlined"
+              href="/subscribe/form"
+            >
               Add credit or debit card
             </Button>
           </div>
@@ -78,6 +88,6 @@ const Drawer: FC<IDrawerProps> = ({ children }) => {
       </SwipeableDrawer>
     </>
   );
-}
+};
 
-export default Drawer
+export default Drawer;

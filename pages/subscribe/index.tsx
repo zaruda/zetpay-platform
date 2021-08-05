@@ -61,7 +61,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     alignItems: 'center'
   },
   trial: {
-    marginTop: theme.spacing(0.5)
+    marginTop: theme.spacing(1)
   }
 }));
 
@@ -83,28 +83,28 @@ export default function Subscribe() {
         <div className={classes.featureList}>
           <div className={classes.feature}>
             <UnlimitedIcon />
-            <Typography>
+            <Typography variant="body2">
               Unlimited <br /> Downloads
             </Typography>
           </div>
 
           <div className={classes.feature}>
             <PlaylistWhiteIcon />
-            <Typography>
+            <Typography variant="body2">
               Playlist <br /> Features
             </Typography>
           </div>
 
           <div className={classes.feature}>
             <FourkIcon />
-            <Typography>
+            <Typography variant="body2">
               Maximum <br /> Quality
             </Typography>
           </div>
 
           <div className={classes.feature}>
             <AdIcon />
-            <Typography>
+            <Typography variant="body2">
               Remove <br /> Ads
             </Typography>
           </div>

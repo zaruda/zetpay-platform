@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Formik, Form, Field } from 'formik';
 import { useMutation, useQuery } from 'react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -8,7 +9,8 @@ import {
   Grid,
   Typography,
   makeStyles,
-  Theme
+  Theme,
+  Link as MuiLink
 } from '@material-ui/core';
 
 import { CreateInvoiceResponse } from '../api/invoice/create';
@@ -28,6 +30,13 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   footer: {
     marginTop: 'auto'
+  },
+  footerCopy: {
+    fontSize: 10,
+    marginBottom: theme.spacing(1),
+    '& > a': {
+      color: theme.palette.common.black
+    }
   }
 }));
 interface SubscribeForm {
@@ -45,11 +54,11 @@ const nameField = 'card_holder';
 const emailField = 'email';
 
 const initialValues: SubscribeForm = {
-  [cardNumberField]: '4111111111111111',
-  [dateField]: '12/22',
-  [cvvField]: '123',
-  [nameField]: 'TEST TEST',
-  [emailField]: 'test@gmail.com'
+  [cardNumberField]: '',
+  [dateField]: '',
+  [cvvField]: '',
+  [nameField]: '',
+  [emailField]: ''
 };
 
 const schema = object({
@@ -68,14 +77,9 @@ export default function SubscribeForm() {
     AxiosError,
     AxiosResponse<CreateInvoiceResponse>
   >('createInvoice', () => axios.post('/api/invoice/create'), {
-    onSuccess: console.log,
-    onError: console.log
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
   });
-  // const { mutateAsync: createInvoice } = useMutation(() =>
-  //   axios.post('/api/invoice/create'), {
-  //     onSuccess: ({sessionId, formToken, payformUrl}) =>
-  //   }
-  // );
 
   const handleSubmit = async (values: SubscribeForm) => {};
 
@@ -172,21 +176,37 @@ export default function SubscribeForm() {
 
             <div className={classes.footer}>
               <Typography
-                variant="body2"
-                gutterBottom
+                className={classes.footerCopy}
                 color="textSecondary"
                 align="center"
               >
-                By continuing, you agree to the Google Payments Terms of
-                Service. The Privacy Notice describes how your data is handled.
+                By continuing, you agree to the Google Payments{' '}
+                <Link
+                  href="https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=buyertos"
+                  passHref
+                >
+                  <MuiLink target="_blank" underline="always">
+                    Terms of Service
+                  </MuiLink>
+                </Link>
+                . The{' '}
+                <Link
+                  href="https://payments.google.com/payments/apis-secure/u/0/get_legal_document?ldo=0&ldt=privacynotice&ldl=ru"
+                  passHref
+                >
+                  <MuiLink target="_blank" underline="always">
+                    Privacy Notice
+                  </MuiLink>
+                </Link>{' '}
+                describes how your data is handled.
               </Typography>
               <Button
                 type="submit"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 fullWidth
               >
-                Submit
+                Save
               </Button>
             </div>
           </form>
