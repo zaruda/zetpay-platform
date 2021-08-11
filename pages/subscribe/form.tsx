@@ -40,21 +40,21 @@ const useStyles = makeStyles<Theme>(theme => ({
   }
 }));
 interface SubscribeForm {
-  card_number: string;
+  card: string;
   date: string;
   cvv: string;
   card_holder: string;
   email: string;
 }
 
-const cardNumberField = 'card_number';
+const cardField = 'card';
 const dateField = 'date';
 const cvvField = 'cvv';
 const nameField = 'card_holder';
 const emailField = 'email';
 
 const initialValues: SubscribeForm = {
-  [cardNumberField]: '',
+  [cardField]: '',
   [dateField]: '',
   [cvvField]: '',
   [nameField]: '',
@@ -68,7 +68,7 @@ enum Mask {
 }
 
 const schema = object({
-  [cardNumberField]: string().max(16).required('Card number is required'),
+  [cardField]: string().max(16).required('Card number is required'),
   [dateField]: string().required('Date is required'),
   [cvvField]: string().required('CVV is required'),
   [nameField]: string().required('Card holder name is required'),
@@ -126,10 +126,15 @@ export default function SubscribeForm() {
               name="expiry_year"
               value={values.date.substring(2)}
             />
+            <input
+              type="hidden"
+              name="card_number"
+              value={values.card.replaceAll(' ', '')}
+            />
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Field
-                  name={cardNumberField}
+                  name={cardField}
                   component={TextField}
                   fullWidth
                   variant="outlined"
