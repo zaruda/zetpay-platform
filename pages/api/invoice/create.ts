@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { v4 as uuid } from 'uuid';
 import services from '../../../services';
 
 export interface CreateInvoiceResponse {
@@ -17,7 +18,7 @@ export default async function handler(
     currency: process.env.ZETPAY_CURRENCY_ID as string,
     payway: process.env.ZETPAY_PAYWAY as string,
     shop_id: Number(process.env.ZETPAY_SHOP_ID),
-    shop_order_id: '4126'
+    shop_order_id: uuid()
   });
 
   const sessionId = result.data.data.data.session_id;

@@ -1,11 +1,13 @@
 import MuiTextField, {
-  TextFieldProps as MuiTextFieldProps,
+  TextFieldProps as MuiTextFieldProps
 } from '@material-ui/core/TextField';
 import { FieldProps, getIn } from 'formik';
 
+import MaskedTextInput from '../../MaskedTextInput';
+
 export interface TextFieldProps
   extends FieldProps,
-  Omit<MuiTextFieldProps, 'name' | 'value' | 'error'> { }
+    Omit<MuiTextFieldProps, 'name' | 'value' | 'error'> {}
 
 function fieldToTextField({
   disabled,
@@ -13,8 +15,9 @@ function fieldToTextField({
   form: { isSubmitting, touched, errors },
   onBlur,
   helperText,
+  mask,
   ...props
-}: TextFieldProps): MuiTextFieldProps {
+}: TextFieldProps & { mask?: string }): MuiTextFieldProps {
   const fieldError = getIn(errors, field.name);
   const showError = getIn(touched, field.name) && !!fieldError;
 
@@ -23,16 +26,22 @@ function fieldToTextField({
     error: showError,
     helperText: showError ? fieldError : helperText,
     disabled: disabled ?? isSubmitting,
+    InputProps: {
+      inputComponent: mask && MaskedTextInput
+    },
+    inputProps: {
+      mask
+    },
     onBlur:
       onBlur ??
       function (e) {
         fieldOnBlur(e ?? field.name);
       },
     ...field,
-    ...props,
+    ...props
   };
 }
 
 export default function TextField({ children, ...props }: TextFieldProps) {
-  return <MuiTextField {...fieldToTextField(props)} >{children}</MuiTextField>
+  return <MuiTextField {...fieldToTextField(props)}>{children}</MuiTextField>;
 }

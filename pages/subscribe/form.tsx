@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Formik, Form, Field } from 'formik';
-import { useMutation, useQuery } from 'react-query';
+import { Formik, Field } from 'formik';
+import { useQuery } from 'react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { object, string } from 'yup';
 import {
@@ -61,12 +61,18 @@ const initialValues: SubscribeForm = {
   [emailField]: ''
 };
 
+enum Mask {
+  Date = '## / ##',
+  Card = '#### #### #### ####',
+  CVV = '###'
+}
+
 const schema = object({
-  [cardNumberField]: string().max(16).required(),
-  [dateField]: string().required(),
-  [cvvField]: string().required(),
-  [nameField]: string().required(),
-  [emailField]: string().email().required()
+  [cardNumberField]: string().max(16).required('Card number is required'),
+  [dateField]: string().required('Date is required'),
+  [cvvField]: string().required('CVV is required'),
+  [nameField]: string().required('Card holder name is required'),
+  [emailField]: string().email().required('Email is required')
 });
 
 export default function SubscribeForm() {
@@ -129,6 +135,7 @@ export default function SubscribeForm() {
                   variant="outlined"
                   size="small"
                   label="Card number"
+                  mask={Mask.Card}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -139,6 +146,7 @@ export default function SubscribeForm() {
                   variant="outlined"
                   size="small"
                   label="MM/YY"
+                  mask={Mask.Date}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -150,6 +158,7 @@ export default function SubscribeForm() {
                   size="small"
                   type="password"
                   label="CVC"
+                  mask={Mask.CVV}
                 />
               </Grid>
               <Grid item xs={12}>
