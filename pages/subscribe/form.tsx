@@ -129,7 +129,7 @@ export default function SubscribeForm() {
             <input
               type="hidden"
               name="card_number"
-              value={values.card.replaceAll(' ', '')}
+              value={values.card && values.card.replaceAll(' ', '')}
             />
             <Grid container spacing={2}>
               <Grid item xs={12}>
