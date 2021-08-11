@@ -119,12 +119,12 @@ export default function SubscribeForm() {
             <input
               type="hidden"
               name="expiry_month"
-              value={values.date.split('/')[0]}
+              value={values.date.substring(0, 2)}
             />
             <input
               type="hidden"
               name="expiry_year"
-              value={values.date.split('/')[1]}
+              value={values.date.substring(2)}
             />
             <Grid container spacing={2}>
               <Grid item xs={12}>
