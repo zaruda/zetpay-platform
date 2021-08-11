@@ -26,9 +26,11 @@ function fieldToTextField({
     error: showError,
     helperText: showError ? fieldError : helperText,
     disabled: disabled ?? isSubmitting,
-    InputProps: {
-      inputComponent: mask && MaskedTextInput
-    },
+    InputProps: mask
+      ? {
+          inputComponent: MaskedTextInput as any
+        }
+      : undefined,
     inputProps: {
       mask
     },
