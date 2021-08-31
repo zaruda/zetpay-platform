@@ -5,14 +5,13 @@ import {
   makeStyles,
   Theme
 } from '@material-ui/core';
-
+import { Drawer } from '@zaruda/zetpay-core';
 import FourkIcon from '../../components/icons/FourkIcon';
 import PlaylistWhiteIcon from '../../components/icons/PlaylistWhiteIcon';
 import UnlimitedIcon from '../../components/icons/UnlimitedIcon';
 import AdIcon from '../../components/icons/AdIcon';
 import ArrowRightIcon from '../../components/icons/ArrowRightIcon';
 import MonsterIcon from '../../components/icons/MonsterIcon';
-import Drawer from '../../components/Drawer';
 
 const useStyles = makeStyles<Theme>(theme => ({
   root: {
@@ -111,7 +110,7 @@ export default function Subscribe() {
         </div>
       </div>
       <div className={classes.footer}>
-        <Drawer>
+        <Drawer href="/subscribe/form">
           <Button
             color="primary"
             variant="contained"
