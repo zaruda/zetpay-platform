@@ -68,7 +68,7 @@ export default function Subscribe() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root}>
+    <Container className={classes.root} maxWidth={false}>
       <MonsterIcon className={classes.monster} />
       <div className={classes.header}>
         <Typography className={classes.title} align="center">

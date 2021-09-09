@@ -322,10 +322,10 @@
     "@typescript-eslint/types" "4.28.3"
     eslint-visitor-keys "^2.0.0"
 
-"@zaruda/zetpay-core@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@zaruda/zetpay-core/-/zetpay-core-0.0.18.tgz#9a8c83b2e419cd6c4c23263f8114f98c1dae9bce"
-  integrity sha512-/rc4QD5WRoJIPD0R4Sj6jX5CPti2qyLqImKhWKUK6ge769I5gf4gMGW9yufPlXm2Eo6LE6zcLXUzKoAnnSxLXg==
+"@zaruda/zetpay-core@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@zaruda/zetpay-core/-/zetpay-core-0.0.19.tgz#d46555adeeaf07de8989e3ea76cc5eb915f83cdf"
+  integrity sha512-Ew1z9QoxL1TuX8RtTFY1FfYg0nZryajW1fjtO+2z9IYHG9ViGGXsl4ndLqAOfwGVHxTClzdQdIcFN7Rdy6rGNQ==
   dependencies:
     "@material-ui/core" "^4.12.1"
     "@material-ui/icons" "^4.11.2"
